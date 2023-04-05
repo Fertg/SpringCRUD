@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
+	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
+	<script src="/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/styleConsulta.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Usuarios</title>
+</head>
+<body>
+	<div id="heading-1" class="ui-corner-all custom-corners">
+		<div data-role="header" id="header-1">
+			<a onclick="window.location.href='index.html'" class="ui-btn ui-mini ui-btn-inline ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-left">atras</a>
+			<h1>Usuarios dados de alta</h1>
+		</div>
+ 
+     <table id="tabla">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Fecha Creacion</th>
+            </tr>
+        </thead>
+        <tbody id="tablaBody"></tbody>
+	
+<script type="text/javascript">
+
+function cargarLista() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+    	 if (xhr.readyState === 4 && xhr.status === 200) {
+             var lista = JSON.parse(xhr.responseText);
+             var tablaBody = document.getElementById("tablaBody");
+             for (var i = 0; i < lista.length; i++) {
+                 var fila = tablaBody.insertRow();
+                 var celdaEmail = fila.insertCell();
+                 celdaEmail.innerHTML = lista[i].email; // acceder a la clave "email" del mapa
+                 var celdaFecha = fila.insertCell();
+                 celdaFecha.innerHTML = lista[i].created_at; // acceder a la clave "fecha" del mapa
+             }
+         }
+     };
+    xhr.open("GET", "/usuarios", true);
+    xhr.send();
+}
+cargarLista();
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
+
+

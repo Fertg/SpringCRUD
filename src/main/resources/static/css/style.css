@@ -1,0 +1,10 @@
+#portada{
+	border-radius: 10%;
+     width: 20%;
+}
+#divImg{
+	text-align: center;
+}
+body {
+        overflow: auto;
+      }

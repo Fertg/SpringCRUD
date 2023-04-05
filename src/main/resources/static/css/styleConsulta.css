@@ -1,0 +1,15 @@
+#tabla {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+#tabla th {
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#tabla td {
+    border: 1px solid black;
+    padding: 10px;
+}
