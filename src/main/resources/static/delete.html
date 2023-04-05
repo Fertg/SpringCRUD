@@ -8,41 +8,40 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alta Usuarios</title>
 </head>
 <body>
-	<h3 id="heading-1" class="ui-bar ui-bar-a ui-corner-all">Sistema Gestión Tienda</h3>
-	<div class="ui-body ui-body-a ui-corner-all">
-	<div data-role="controlgroup" id="buttons-1">
-		<button onclick="window.location.href='alta.html'" class="ui-btn ui-corner-all">Alta Usuarios</button>
-		<button onclick="window.location.href='ss.html'"" class="ui-btn ui-corner-all">Lista de Usuarios</button>
-		<button onclick="window.location.href='delete.html'" class="ui-btn ui-corner-all">Borrado de Usuarios</button>
-	</div>
-			
-	</div>
-</body>
-
-
+	<div id="heading-1" class="ui-corner-all custom-corners">
+		<div data-role="header" id="header-1">
+			<a onclick="window.location.href='index.html'" class="ui-btn ui-mini ui-btn-inline ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-left">atras</a>
+			<h1>Borrar Usuario</h1>
+		</div>
+		<div class="ui-body ui-body-a">
+			<form>  
+        <label for="email">Buscar email:</label>
+        <input type="email" id="iDemail" name="email"><br><br>       
+        <button type="button" onclick="enviarDatos()">Borrar</button>
+    </form>
+	
 <script type="text/javascript">
 
 
 function enviarDatos() {
     var email = document.getElementById("iDemail").value;
-    var password = document.getElementById("iDpassword").value;
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/insertarUsuario", true);
+    xhr.open("POST", "/deleteUsuario", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
         }
     };
-    var data = JSON.stringify({"email": email, "password": password});
+    var data = JSON.stringify({"email": email });
     xhr.send(data);
+    document.getElementById("iDemail").value = '';
 }
 
 

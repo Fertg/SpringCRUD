@@ -52,5 +52,32 @@ public class RestController {
 			return"El usuario ya existe";	
 		}
 	}
+	
+	
+	
+	
+	
+	@PostMapping("/deleteUsuario")
+	public String deleteUsuario(@RequestBody Map<String, Object> data)  {
+
+		try {
+		String email = (String) data.get("email");
+	
+		  String sql = "DELETE FROM user WHERE email = ?";
+			jdbcTemplate.update(sql, email);
+
+		System.out.println("Usuario Borrado"); 
+		return "Usuario Borrado: "+email;
+		}catch(DataAccessException e) {
+			System.out.println("El usuario no existe"); 
+			return"El usuario no existe";	
+		}
+	}
+	
+	
+	
+	
+	
+	
 
 }
