@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
+	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
+	<script src="/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento</title>
+    	
+	     	
+		</div>
+</head>
+<body>
+	<form>  
+        <label for="email">Email:</label>
+        <input type="email" id="iDemail" name="email"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="iDpassword" name="password"><br><br>
+        <button type="button" onclick="enviarDatos()">Enviar</button>
+    </form>
+    
+    
+</body>
+<script type="text/javascript">
+
+
+function enviarDatos() {
+    var email = document.getElementById("iDemail").value;
+    var password = document.getElementById("iDpassword").value;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/insertarUsuario", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"email": email, "password": password});
+    xhr.send(data);
+}
+
+
+
+
+
+
+
+
+</script>
+
+</html>
+
+
+
