@@ -45,10 +45,10 @@ public class RestController {
 			return password;
 		}
 
-
+		System.out.println("Usuario insertado correctamente en la base de datos"); 
 		return "Usuario insertado correctamente en la base de datos.";
 		}catch(DataAccessException e) {
-			
+			System.out.println("Usuario ya existe"); 
 			return"El usuario ya existe";	
 		}
 	}
