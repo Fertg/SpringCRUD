@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
+	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
+	<script src="/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alta Usuarios</title>
+</head>
+<body>
+	<div id="heading-1" class="ui-corner-all custom-corners">
+		<div data-role="header" id="header-1">
+			<a onclick="window.location.href='index.html'" class="ui-btn ui-mini ui-btn-inline ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-left">atras</a>
+			<h1>Actualizar email usuario</h1>
+		</div>
+		<div class="ui-body ui-body-a">
+			<form>  
+        <label for="email">Email del usuario:</label>
+        <input type="email" id="iDemail" name="email"><br><br>
+        <label for="email">Email Nuevo:</label>
+        <input type="email" id="iDemailNew" name="email"><br><br>
+        <button type="button" onclick="actualizarMail()">Actualizar</button>
+    </form>
+	
+<script type="text/javascript">
+
+
+function actualizarMail() {
+    var email = document.getElementById("iDemail").value;
+    var emailN = document.getElementById("iDemailNew").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("PUT", "/updateUser", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            alert(xhr.responseText);
+        }
+    };
+    var data = JSON.stringify({"email": email, "emailN": emailN});
+    xhr.send(data);
+    document.getElementById("iDemail").value = '';
+    document.getElementById("iDemailNew").value = '';
+}
+
+</script>
+
+
+</body>
+</html>
+
+

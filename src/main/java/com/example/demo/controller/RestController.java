@@ -9,10 +9,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -93,6 +96,31 @@ public class RestController {
 		List<Map<String, Object>> usuarios = jdbcTemplate.queryForList(sql);
 		return usuarios;
 	}
+	
+	@PutMapping("/updateUser")
+	public String updateUser(@RequestBody Map<String, Object> data) {
+
+		if (data != null) {
+			String email = (String) data.get("email");
+			String emailN = (String) data.get("emailN");
+			if (validarEmail(email)) {
+			try {
+				String sql = "UPDATE user SET email = ? WHERE email = ?";
+                jdbcTemplate.update(sql, emailN, email);
+				
+                return "Actualizado";
+				} catch (DataAccessException e) {
+					System.out.println("Usuario ya existe");
+					return "El usuario no existe";
+				}
+			} else
+				return "email no válido";
+		} else {
+			return null;
+		}
+	}
+	
+	
 
 	public boolean validarEmail(String email) {
 		// Expresión regular para validar correo electrónico
