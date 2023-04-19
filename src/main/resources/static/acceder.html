@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="http://code.ionicframework.com/1.0.0/css/ionic.css" />
+	<script src="http://code.ionicframework.com/1.0.0/js/ionic.bundle.js"></script>
+	<script src="/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pokemons</title>
+</head>
+<body>
+	<div id="heading-1" class="ui-corner-all custom-corners">
+		<div data-role="header" id="header-1">
+			<a onclick="window.location.href='index.html'" class="ui-btn ui-mini ui-btn-inline ui-btn-left ui-corner-all ui-icon-arrow-l ui-btn-icon-left">atras</a>
+			<h1 id="loginH1">Login</h1>
+		</div>
+		<div class="ui-body ui-body-a">
+		
+	<form id="checkUserForm">  
+        <label for="emailInput">Email:</label>
+        <input type="email" id="iDemail1" name="email"><br><br>
+        <label for="passwordInput">Password:</label>
+        <input type="password" id="iDpassword1" name="password"><br><br>
+        <button type="submit" >Enviar</button>
+    </form>
+	
+	<div id="buttons" style="display: none;">
+  <button  onclick="window.location.href='selectPokemon.html'" id="button1">Lista de Pokemons</button>
+  <button onclick="window.location.href='searchEv.html'"id="button2">Buscar evolución</button>
+  <button id="button3">Mostrar pokemon por tipo</button>
+</div>
+	<h3 id="adminPanel" style="display: none;" >Admin</h3>
+<div data-role="controlgroup" id="buttons-1" style="display: none;">
+	<a href="#" class="ui-btn ui-corner-all">Insertar Pokemon</a>
+	<a href="#" class="ui-btn ui-corner-all">Modificar Pokemon</a>
+	<a href="#" class="ui-btn ui-corner-all">Eliminar Pokemon</a>
+</div>
+<script type="text/javascript">
+
+const checkUserForm = document.getElementById("checkUserForm");
+const buttonsDiv = document.getElementById("buttons");
+
+checkUserForm.addEventListener("submit", (event) => {
+	  event.preventDefault();
+	  
+	  const email = document.getElementById("iDemail1").value;
+	  const password = document.getElementById("iDpassword1").value;
+	  const url = `/users/${encodeURIComponent(email)}?password=${encodeURIComponent(password)}`;
+	  fetch(url)
+	    .then(response => {
+	      if (response.ok) {
+	        return response.json();
+	      } else {
+	        throw new Error("El usuario no existe");
+	      }
+	    })
+	    .then(data => {
+	      buttonsDiv.style.display = "block";
+	      if (data.exists) {
+	        document.getElementById("button1").style.display = "block";
+	        document.getElementById("button2").style.display = "block";
+	        document.getElementById("button3").style.display = "block";
+	        document.getElementById("checkUserForm").style.display = "none";
+	        document.getElementById("loginH1").innerHTML="Bienvenido: "+email; 
+		    } else {
+	        document.getElementById("button1").style.display = "none";
+	        document.getElementById("button2").style.display = "none";
+	        document.getElementById("button3").style.display = "none";
+	      }
+	    })
+	    .catch(error => {
+	      console.error(error);
+	      alert(error.message);
+	    });
+	});
+
+
+	
+
+</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,30 @@
+#divTabla {
+  max-width: 800px; 
+  margin: 0 auto; 
+  height: 300px;
+  overflow-y: scroll;
+}
+
+
+#tabla {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#tabla th {
+    color:white; 
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+  	top: 0;
+    background-color: #0000CD; 
+
+}
+
+#tabla td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+
+}

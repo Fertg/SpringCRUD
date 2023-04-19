@@ -8,3 +8,19 @@
 body {
         overflow: auto;
       }
+.header-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido */
+}
+
+#heading-1 {
+  flex: 1; /* Ocupa todo el espacio restante */
+}
+
+#button-1 {
+  float: right;
+}
+      
+#adminPanel{
+	text-align: center;
+}      
